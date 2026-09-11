@@ -186,7 +186,7 @@ img {
 .sidebar-search-hint {
   font-size: 0.62rem;
   color: var(--text-subtle);
-  background: var(--bg-card);
+  background: transparent;
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 0.08rem 0.3rem;
