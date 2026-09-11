@@ -64,7 +64,7 @@ const firstLetter = computed(() => (site.title || 'B').charAt(0).toUpperCase())
 
 const friendLinks: { name: string; url: string; avatar?: string }[] = [
   { name: '姜一的Blog', url: 'https://blog.jianges.com', avatar: 'https://blog.jianges.com/favicon.ico' },
-  { name: 'WUSTACM', url: 'https://blog.wustacm.com', avatar: 'https://raw.githubusercontent.com/WUSTACM/blog.github.io/main/public/images/.png' }
+  { name: 'WUSTACM', url: 'https://blog.wustacm.com', avatar: 'https://blog.wustacm.com/_ipx/_/assets/wustacm-logo.png' }
 ]
 </script>
 
