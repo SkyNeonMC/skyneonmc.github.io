@@ -11,16 +11,16 @@ const props = defineProps<{
 }>()
 
 const gradientPresets = [
-  'linear-gradient(135deg, #a78bfa, #f472b6)',
-  'linear-gradient(135deg, #60a5fa, #a78bfa)',
-  'linear-gradient(135deg, #f472b6, #fb923c)',
-  'linear-gradient(135deg, #34d399, #60a5fa)',
-  'linear-gradient(135deg, #fbbf24, #f472b6)',
-  'linear-gradient(135deg, #818cf8, #22d3ee)',
-  'linear-gradient(135deg, #fb7185, #fbbf24)',
-  'linear-gradient(135deg, #a3e635, #34d399)',
-  'linear-gradient(135deg, #c084fc, #fb7185)',
-  'linear-gradient(135deg, #38bdf8, #c084fc)',
+  'linear-gradient(135deg, #0078d4, #2a8be0)',
+  'linear-gradient(135deg, #004578, #0078d4)',
+  'linear-gradient(135deg, #3a3a3a, #505050)',
+  'linear-gradient(135deg, #0078d4, #004578)',
+  'linear-gradient(135deg, #505050, #6a6a6a)',
+  'linear-gradient(135deg, #1e5f99, #4086c5)',
+  'linear-gradient(135deg, #2b2b2b, #4a4a4a)',
+  'linear-gradient(135deg, #0062aa, #2a8be0)',
+  'linear-gradient(135deg, #404040, #5a5a5a)',
+  'linear-gradient(135deg, #0078d4, #1e1e1e)',
 ]
 
 function hashString(s: string): number {
