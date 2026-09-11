@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { computed, ref, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 
 const site = useAppConfig() as {
   title: string
@@ -42,6 +42,15 @@ const socialLinks = computed(() => {
   if (site.domain) items.push({ icon: '🌐', href: `https://${site.domain}`, label: 'Website' })
   items.push({ icon: '📡', href: '/feed.xml', label: 'RSS' })
   return items
+})
+
+// === Mobile menu ===
+const mobileMenuOpen = ref(false)
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value
+}
+watch(() => route.path, () => {
+  mobileMenuOpen.value = false
 })
 
 // === Search modal ===
@@ -106,57 +115,72 @@ const highlight = (text: string, q: string) => {
       </div>
     </div>
 
-    <div class="sidebar-search" @click="openSearch">
-      <span class="sidebar-search-icon">🔍</span>
-      <span class="sidebar-search-placeholder">搜索文章...</span>
-      <span class="sidebar-search-hint">Ctrl+K</span>
+    <!-- Mobile action buttons (hidden on desktop) -->
+    <div class="mobile-actions">
+      <button class="mobile-icon-btn" @click="openSearch" title="搜索">
+        <span>🔍</span>
+      </button>
+      <button class="mobile-icon-btn" @click="toggleMobileMenu" title="菜单">
+        <span v-if="!mobileMenuOpen">☰</span>
+        <span v-else>✕</span>
+      </button>
     </div>
 
-    <nav class="sidebar-nav">
-      <NuxtLink
-        v-for="item in navItems"
-        :key="item.key"
-        :to="item.to"
-        class="nav-btn"
-        :class="{ active: activeKey === item.key }"
-      >
-        <span class="nav-icon">{{ item.icon }}</span>
-        <span>{{ item.label }}</span>
-        <span v-if="item.count !== undefined" class="nav-pill">{{ item.count }}</span>
-      </NuxtLink>
-    </nav>
-
-    <div class="sidebar-bottom">
-      <div class="theme-toggle">
-        <button
-          class="theme-btn"
-          :class="{ active: theme === 'dark' }"
-          @click="setTheme('dark')"
-          title="深色"
-        >🌙</button>
-        <button
-          class="theme-btn"
-          :class="{ active: theme === 'system' }"
-          @click="setTheme('system')"
-          title="跟随系统"
-        >🖥️</button>
-        <button
-          class="theme-btn"
-          :class="{ active: theme === 'light' }"
-          @click="setTheme('light')"
-          title="浅色"
-        >☀️</button>
+    <!-- Collapsible content (always visible on desktop, drawer on mobile) -->
+    <div class="sidebar-collapsible" :class="{ 'mobile-open': mobileMenuOpen }">
+      <div class="sidebar-search" @click="openSearch">
+        <span class="sidebar-search-icon">🔍</span>
+        <span class="sidebar-search-placeholder">搜索文章...</span>
+        <span class="sidebar-search-hint">Ctrl+K</span>
       </div>
-      <div class="sidebar-social">
-        <a
-          v-for="s in socialLinks"
-          :key="s.label"
-          :href="s.href"
-          :title="s.label"
-          class="social-icon"
-          target="_blank"
-          rel="noopener noreferrer"
-        >{{ s.icon }}</a>
+
+      <nav class="sidebar-nav">
+        <NuxtLink
+          v-for="item in navItems"
+          :key="item.key"
+          :to="item.to"
+          class="nav-btn"
+          :class="{ active: activeKey === item.key }"
+          @click="mobileMenuOpen = false"
+        >
+          <span class="nav-icon">{{ item.icon }}</span>
+          <span>{{ item.label }}</span>
+          <span v-if="item.count !== undefined" class="nav-pill">{{ item.count }}</span>
+        </NuxtLink>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="theme-toggle">
+          <button
+            class="theme-btn"
+            :class="{ active: theme === 'dark' }"
+            @click="setTheme('dark')"
+            title="深色"
+          >🌙</button>
+          <button
+            class="theme-btn"
+            :class="{ active: theme === 'system' }"
+            @click="setTheme('system')"
+            title="跟随系统"
+          >🖥️</button>
+          <button
+            class="theme-btn"
+            :class="{ active: theme === 'light' }"
+            @click="setTheme('light')"
+            title="浅色"
+          >☀️</button>
+        </div>
+        <div class="sidebar-social">
+          <a
+            v-for="s in socialLinks"
+            :key="s.label"
+            :href="s.href"
+            :title="s.label"
+            class="social-icon"
+            target="_blank"
+            rel="noopener noreferrer"
+          >{{ s.icon }}</a>
+        </div>
       </div>
     </div>
 
