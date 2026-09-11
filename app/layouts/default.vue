@@ -1,27 +1,34 @@
 <template>
-  <div class="app">
-    <header class="navbar">
-      <div class="container navbar-inner">
-        <NuxtLink to="/" class="navbar-brand">{{ site.title }}</NuxtLink>
-        <nav class="navbar-links">
-          <NuxtLink to="/" class="navbar-link">首页</NuxtLink>
-          <NuxtLink to="/archive" class="navbar-link">归档</NuxtLink>
-          <NuxtLink to="/about" class="navbar-link">关于</NuxtLink>
-        </nav>
-      </div>
-    </header>
-    <div class="container main-wrapper">
-      <main class="content-area">
-        <slot />
-      </main>
-      <Sidebar />
-    </div>
-    <footer class="footer">
-      <p>© {{ new Date().getFullYear() }} {{ site.title }} · Built with Nuxt · Theme Clarity</p>
-    </footer>
+  <div class="app" :class="themeClass">
+    <LeftSidebar />
+    <main class="content-area container">
+      <slot />
+    </main>
+    <RightSidebar />
+    <FooterBar />
   </div>
 </template>
 
 <script setup lang="ts">
-const site = useAppConfig() as { title: string }
+const theme = ref<'dark' | 'light' | 'system'>('dark')
+const themeClass = computed(() => theme.value === 'light' ? 'theme-light' : 'theme-dark')
+
+if (import.meta.client) {
+  const saved = localStorage.getItem('theme') as 'dark' | 'light' | 'system' | null
+  if (saved) {
+    theme.value = saved
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    theme.value = 'light'
+  }
+}
+
+const setTheme = (t: 'dark' | 'light' | 'system') => {
+  theme.value = t
+  if (import.meta.client) {
+    localStorage.setItem('theme', t)
+  }
+}
+
+provide('theme', theme)
+provide('setTheme', setTheme)
 </script>
