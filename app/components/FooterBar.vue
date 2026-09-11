@@ -15,7 +15,6 @@ const currentYear = new Date().getFullYear()
       <div class="footer-col">
         <h4>🔍 探索</h4>
         <ul>
-          <li><NuxtLink to="/feed.xml">Atom 订阅</NuxtLink></li>
           <li><NuxtLink to="/links">开往（友链）</NuxtLink></li>
           <li><NuxtLink to="/archive">归档</NuxtLink></li>
         </ul>
