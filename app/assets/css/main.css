@@ -50,7 +50,8 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background: var(--bg) url('/55cdfcf89f1e60d2c921ede92998d8ac.jpg') no-repeat center center fixed;
+  background-size: cover;
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
     'Microsoft YaHei', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -59,6 +60,34 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode: dim the background image */
+.theme-dark body {
+  background-color: #202020;
+}
+.theme-light body {
+  background-color: #fafafa;
+}
+
+/* Overlay for readability - applies a semi-transparent layer over the bg image */
+.app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 260px 1fr 280px;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    'sidebar main right-sidebar'
+    'footer footer footer';
+  gap: 0;
+}
+
+/* Semi-transparent overlay so bg image shows through but content stays readable */
+.theme-dark .app {
+  background: rgba(32, 32, 32, 0.82);
+}
+.theme-light .app {
+  background: rgba(250, 250, 250, 0.85);
 }
 
 a {
@@ -97,6 +126,7 @@ img {
   bottom: 0;
   width: 260px;
   background: var(--bg-sidebar);
+  backdrop-filter: blur(12px);
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -957,6 +987,7 @@ img {
 .footer {
   grid-area: footer;
   background: var(--bg-sidebar);
+  backdrop-filter: blur(12px);
   border-top: 1px solid var(--border);
   padding: 2.5rem 2.5rem 1.5rem;
   margin-left: 260px;
