@@ -61,30 +61,35 @@ const formatWordCount = (n: number) => {
 
 const showTechDetails = ref(false)
 const firstLetter = computed(() => (site.title || 'B').charAt(0).toUpperCase())
+
+const friendLinks: { name: string; url: string; avatar?: string }[] = [
+  // 在这里添加友情链接
+  { name: '示例朋友', url: 'https://example.com' }
+]
 </script>
 
 <template>
   <aside class="right-sidebar">
     <div class="widget">
-      <h3 class="widget-title">📊 博客统计</h3>
-      <div class="stats-list">
-        <div class="stat-row">
-          <span class="stat-label">运营时长</span>
-          <span class="stat-value">{{ runTime }}</span>
+      <h3 class="widget-title">博客统计</h3>
+      <div class="stat-cards">
+        <div class="stat-card">
+          <span class="stat-card-label">运营时长</span>
+          <span class="stat-card-value">{{ runTime }}</span>
         </div>
-        <div class="stat-row">
-          <span class="stat-label">上次更新</span>
-          <span class="stat-value">{{ lastUpdate }}</span>
+        <div class="stat-card">
+          <span class="stat-card-label">上次更新</span>
+          <span class="stat-card-value">{{ lastUpdate }}</span>
         </div>
-        <div class="stat-row">
-          <span class="stat-label">总字数</span>
-          <span class="stat-value">{{ formatWordCount(totalWordCount) }}</span>
+        <div class="stat-card">
+          <span class="stat-card-label">总字数</span>
+          <span class="stat-card-value">{{ formatWordCount(totalWordCount) }}</span>
         </div>
       </div>
     </div>
 
     <div class="widget">
-      <h3 class="widget-title">🛠 技术信息</h3>
+      <h3 class="widget-title">技术信息</h3>
       <div class="tech-list">
         <div class="tech-row">
           <span class="tech-label">构建平台</span>
@@ -108,7 +113,7 @@ const firstLetter = computed(() => (site.title || 'B').charAt(0).toUpperCase())
         </div>
       </div>
       <button class="tech-expand-btn" @click="showTechDetails = !showTechDetails">
-        {{ showTechDetails ? '收起构建详情 ▲' : '展开构建详情 ▼' }}
+        {{ showTechDetails ? '收起构建详情' : '展开构建详情' }}
       </button>
       <div v-if="showTechDetails" class="tech-details">
         <div class="tech-row"><span class="tech-label">Nuxt</span><span class="tech-value">^4.5.2</span></div>
@@ -120,13 +125,32 @@ const firstLetter = computed(() => (site.title || 'B').charAt(0).toUpperCase())
     </div>
 
     <div class="widget contact-widget">
-      <h3 class="widget-title">👋 联系</h3>
-      <div class="contact-avatar">
-        <img v-if="site.avatar && site.avatar.startsWith('http')" :src="site.avatar" :alt="site.title" />
-        <span v-else>{{ firstLetter }}</span>
+      <h3 class="widget-title">联系</h3>
+      <div class="contact-row">
+        <div class="contact-avatar">
+          <img v-if="site.avatar && site.avatar.startsWith('http')" :src="site.avatar" :alt="site.title" />
+          <span v-else>{{ firstLetter }}</span>
+        </div>
+        <div class="contact-info">
+          <div class="contact-name">{{ site.title }}</div>
+          <a v-if="site.email" :href="`mailto:${site.email}`" class="contact-email">{{ site.email }}</a>
+          <span v-else class="contact-email">未设置邮箱</span>
+        </div>
       </div>
-      <div class="contact-name">{{ site.title }}</div>
-      <div class="contact-email">{{ site.email || '未设置邮箱' }}</div>
+    </div>
+
+    <div class="widget">
+      <h3 class="widget-title">友情链接</h3>
+      <ul class="friend-list">
+        <li v-for="f in friendLinks" :key="f.url">
+          <a :href="f.url" target="_blank" rel="noopener noreferrer">
+            <span class="friend-avatar" :style="f.avatar ? `background-image: url(${f.avatar})` : ''">
+              <span v-if="!f.avatar">{{ f.name.charAt(0).toUpperCase() }}</span>
+            </span>
+            <span class="friend-name">{{ f.name }}</span>
+          </a>
+        </li>
+      </ul>
     </div>
   </aside>
 </template>
