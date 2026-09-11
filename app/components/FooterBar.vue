@@ -31,6 +31,9 @@ const currentYear = new Date().getFullYear()
           <li v-if="site.domain">
             <a :href="'https://' + site.domain" target="_blank" rel="noopener noreferrer">官网</a>
           </li>
+          <li>
+            <a href="https://space.bilibili.com/3546737941678383" target="_blank" rel="noopener noreferrer">B站</a>
+          </li>
         </ul>
       </div>
       <div class="footer-col">

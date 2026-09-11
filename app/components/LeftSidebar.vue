@@ -40,6 +40,7 @@ const socialLinks = computed(() => {
   if (site.github) items.push({ icon: '🐙', href: site.github, label: 'GitHub' })
   if (site.email) items.push({ icon: '✉️', href: `mailto:${site.email}`, label: 'Email' })
   if (site.domain) items.push({ icon: '🌐', href: `https://${site.domain}`, label: 'Website' })
+  items.push({ icon: '📺', href: 'https://space.bilibili.com/3546737941678383', label: 'B站' })
   return items
 })
 
