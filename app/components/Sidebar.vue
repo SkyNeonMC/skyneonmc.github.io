@@ -14,6 +14,11 @@ const tags = computed(() => {
 })
 
 const recent = computed(() => (allArticles.value ?? []).slice(0, 5))
+
+const friendLinks: { name: string; url: string }[] = [
+  // 在这里添加你的友情链接
+  { name: '示例朋友', url: 'https://example.com' }
+]
 </script>
 
 <template>
@@ -47,6 +52,14 @@ const recent = computed(() => (allArticles.value ?? []).slice(0, 5))
         <li v-for="a in recent" :key="a.path">
           <NuxtLink :to="a.path">{{ a.title }}</NuxtLink>
           <span class="recent-date">{{ new Date(a.date).toLocaleDateString('zh-CN') }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="widget widget-friends">
+      <h3 class="widget-title">友情链接</h3>
+      <ul class="friend-list">
+        <li v-for="f in friendLinks" :key="f.url">
+          <a :href="f.url" target="_blank" rel="noopener noreferrer">{{ f.name }}</a>
         </li>
       </ul>
     </div>
