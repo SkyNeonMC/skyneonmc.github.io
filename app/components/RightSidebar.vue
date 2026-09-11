@@ -63,8 +63,7 @@ const showTechDetails = ref(false)
 const firstLetter = computed(() => (site.title || 'B').charAt(0).toUpperCase())
 
 const friendLinks: { name: string; url: string; avatar?: string }[] = [
-  // 在这里添加友情链接
-  { name: '示例朋友', url: 'https://example.com' }
+  { name: '姜一的Blog', url: 'https://blog.jianges.com', avatar: 'https://blog.jianges.com/favicon.ico' }
 ]
 </script>
 
