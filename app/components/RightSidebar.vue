@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { friendLinks } from '~/data/friend-links'
 
 const site = useAppConfig() as {
   title: string
@@ -61,11 +62,6 @@ const formatWordCount = (n: number) => {
 
 const showTechDetails = ref(false)
 const firstLetter = computed(() => (site.title || 'B').charAt(0).toUpperCase())
-
-const friendLinks: { name: string; url: string; avatar?: string }[] = [
-  { name: '姜一的Blog', url: 'https://blog.jianges.com', avatar: 'https://blog.jianges.com/favicon.ico' },
-  { name: 'WUSTACM', url: 'https://blog.wustacm.com', avatar: '/wustacm.ico' }
-]
 </script>
 
 <template>
