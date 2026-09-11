@@ -28,8 +28,7 @@ const { data: articles } = await useAsyncData('posts-page-' + currentPage.value,
 })
 
 useHead({
-  title: 'Skyneonmc Blog',
-  titleTemplate: '%s · Skyneonmc Blog'
+  title: 'Skyneon'
 })
 </script>
 

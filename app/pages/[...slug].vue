@@ -8,7 +8,7 @@ if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: '页面不存在', fatal: true })
 }
 
-useHead({ title: page.value.title ?? page.value.slug })
+useHead({ title: `${page.value.title ?? page.value.slug} · Skyneon` })
 </script>
 
 <template>

@@ -14,7 +14,7 @@ function formatDate(d: string | Date) {
 }
 
 useHead({
-  title: article.value.title,
+  title: `${article.value.title} · Skyneon`,
   meta: [
     { name: 'description', content: article.value.description ?? '' }
   ]

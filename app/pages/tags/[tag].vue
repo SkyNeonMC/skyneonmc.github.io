@@ -15,7 +15,7 @@ function formatDate(d: string | Date) {
   return `${date.getMonth() + 1}月${date.getDate()}日`
 }
 
-useHead({ title: `标签: ${tag}` })
+useHead({ title: `标签: ${tag} · Skyneon` })
 </script>
 
 <template>
