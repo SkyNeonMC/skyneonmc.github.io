@@ -7,8 +7,8 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   app: {
     head: {
-      title: 'Skyneonmc Blog',
-      titleTemplate: '%s · Skyneonmc Blog',
+      title: 'Skyneon',
+      titleTemplate: '%s · Skyneon',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     }
   },
   appConfig: {
-    title: 'Skyneonmc Blog',
+    title: 'Skyneon',
     slogan: 'Stay hungry, stay foolish.',
     avatar: '/avatar.png',
     email: 'skyneonmc@example.com',
