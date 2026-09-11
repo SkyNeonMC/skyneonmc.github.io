@@ -3,6 +3,8 @@
   --bg: #202020;
   --bg-sidebar: #282828;
   --bg-card: #282828;
+  --bg-card-glass: rgba(40, 40, 40, 0.5);
+  --bg-widget-glass: rgba(40, 40, 40, 0.45);
   --bg-elevated: #323232;
   --bg-hover: #3c3c3c;
   --border: rgba(255, 255, 255, 0.08);
@@ -22,6 +24,8 @@
   --bg: #fafafa;
   --bg-sidebar: #ffffff;
   --bg-card: #ffffff;
+  --bg-card-glass: rgba(255, 255, 255, 0.55);
+  --bg-widget-glass: rgba(255, 255, 255, 0.50);
   --bg-elevated: #f3f3f3;
   --bg-hover: #e8e8e8;
   --border: #e5e5e5;
@@ -70,7 +74,7 @@ body {
   background-color: #fafafa;
 }
 
-/* Overlay for readability - applies a semi-transparent layer over the bg image */
+/* Frosted glass overlay - backdrop-filter blurs the bg image through the entire page */
 .app {
   min-height: 100vh;
   display: grid;
@@ -80,14 +84,15 @@ body {
     'sidebar main right-sidebar'
     'footer footer footer';
   gap: 0;
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
 }
 
-/* Semi-transparent overlay so bg image shows through but content stays readable */
 .theme-dark .app {
-  background: rgba(32, 32, 32, 0.82);
+  background: rgba(32, 32, 32, 0.55);
 }
 .theme-light .app {
-  background: rgba(250, 250, 250, 0.85);
+  background: rgba(250, 250, 250, 0.60);
 }
 
 a {
@@ -105,18 +110,6 @@ img {
   height: auto;
 }
 
-.app {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 260px 1fr 280px;
-  grid-template-rows: 1fr auto;
-  grid-template-areas:
-    'sidebar main right-sidebar'
-    'footer footer footer';
-  gap: 0;
-  background: var(--bg);
-}
-
 /* ===== Left Sidebar ===== */
 .left-sidebar {
   grid-area: sidebar;
@@ -125,8 +118,7 @@ img {
   left: 0;
   bottom: 0;
   width: 260px;
-  background: var(--bg-sidebar);
-  backdrop-filter: blur(12px);
+  background: transparent;
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -401,7 +393,9 @@ img {
   position: relative;
   display: flex;
   border-radius: 14px;
-  background: var(--bg-card);
+  background: var(--bg-card-glass);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   overflow: hidden;
   box-shadow: var(--card-shadow);
@@ -570,10 +564,13 @@ img {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  background: transparent;
 }
 
 .widget {
-  background: var(--bg-card);
+  background: var(--bg-widget-glass);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1.25rem 1.35rem;
@@ -986,8 +983,7 @@ img {
 /* ===== Footer ===== */
 .footer {
   grid-area: footer;
-  background: var(--bg-sidebar);
-  backdrop-filter: blur(12px);
+  background: transparent;
   border-top: 1px solid var(--border);
   padding: 2.5rem 2.5rem 1.5rem;
   margin-left: 260px;
