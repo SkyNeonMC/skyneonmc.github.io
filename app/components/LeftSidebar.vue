@@ -49,7 +49,7 @@ const socialLinks = computed(() => {
   <aside class="left-sidebar">
     <div class="sidebar-profile">
       <div class="sidebar-avatar">
-        <img v-if="site.avatar && site.avatar.startsWith('http')" :src="site.avatar" :alt="site.title" />
+        <img v-if="site.avatar" :src="site.avatar" :alt="site.title" />
         <span v-else>{{ firstLetter }}</span>
       </div>
       <div>

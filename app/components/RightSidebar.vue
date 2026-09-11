@@ -128,7 +128,7 @@ const friendLinks: { name: string; url: string; avatar?: string }[] = [
       <h3 class="widget-title">联系</h3>
       <div class="contact-row">
         <div class="contact-avatar">
-          <img v-if="site.avatar && site.avatar.startsWith('http')" :src="site.avatar" :alt="site.title" />
+          <img v-if="site.avatar" :src="site.avatar" :alt="site.title" />
           <span v-else>{{ firstLetter }}</span>
         </div>
         <div class="contact-info">

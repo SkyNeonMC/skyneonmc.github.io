@@ -18,7 +18,7 @@ export default defineNuxtConfig({
   appConfig: {
     title: 'Skyneonmc Blog',
     slogan: 'Stay hungry, stay foolish.',
-    avatar: '/favicon.ico',
+    avatar: '/avatar.png',
     email: 'skyneonmc@example.com',
     github: 'https://github.com/SkyNeonMC',
     domain: 'skyneonmc.github.io',
