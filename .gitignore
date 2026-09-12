@@ -25,3 +25,4 @@ logs
 
 # 本地写作工具（不上传仓库）
 scripts/
+write.bat
