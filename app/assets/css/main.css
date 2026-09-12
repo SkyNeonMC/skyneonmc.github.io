@@ -58,7 +58,7 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: url('/55cdfcf89f1e60d2c921ede92998d8ac.jpg') no-repeat center center;
+  background: url('/bg.jpg') no-repeat center center;
   background-size: cover;
   filter: blur(20px) saturate(1.2);
   transform: scale(1.1);
@@ -1226,6 +1226,27 @@ img {
 @media (max-width: 600px) {
   .left-sidebar {
     padding: 0.6rem 0.85rem;
+  }
+
+  /* 性能：移动端去掉卡片/widget 的逐元素毛玻璃（多层 backdrop-filter 叠加很吃 GPU），
+     只保留 body::before 的一层全局模糊；背景不透明度略增保证可读性 */
+  .article-card,
+  .widget {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .theme-dark .article-card,
+  .theme-dark .widget {
+    background: rgba(40, 40, 40, 0.72);
+  }
+  .theme-light .article-card,
+  .theme-light .widget {
+    background: rgba(255, 255, 255, 0.75);
+  }
+  /* 顶栏模糊半径也减小 */
+  .left-sidebar {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .sidebar-name {

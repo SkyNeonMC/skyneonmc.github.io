@@ -15,9 +15,7 @@ const setTheme = inject<(t: 'dark' | 'light' | 'system') => void>('setTheme')!
 
 const route = useRoute()
 
-const { data: allArticles } = await useAsyncData('sidebar-count', () => {
-  return queryCollection('posts').where('draft', '=', false).order('date', 'DESC').all()
-})
+const { data: allArticles } = await useAllPosts()
 
 const postCount = computed(() => allArticles.value?.length ?? 0)
 const firstLetter = computed(() => (site.title || 'B').charAt(0).toUpperCase())

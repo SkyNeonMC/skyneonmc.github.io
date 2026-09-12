@@ -15,9 +15,9 @@ const site = useAppConfig() as {
   articleLicense?: string
 }
 
-const { data: allArticles } = await useAsyncData('right-sidebar-stats', () => {
-  return queryCollection('posts').where('draft', '=', false).order('date', 'ASC').all()
-})
+const { data: articlesDesc } = await useAllPosts()
+// DESC 列表反转即可得到 ASC，无需再查一次
+const allArticles = computed(() => articlesDesc.value ? [...articlesDesc.value].reverse() : articlesDesc.value)
 
 const firstArticleDate = computed(() => {
   const list = allArticles.value
