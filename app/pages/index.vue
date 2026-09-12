@@ -46,6 +46,7 @@ useHead({
         :date="a.date"
         :description="a.description"
         :tags="a.tags"
+        :cover="a.cover"
         :path="a.path"
         :word-count="a.wordCount"
       />
