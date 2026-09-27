@@ -84,6 +84,8 @@ const firstLetter = computed(() => (site.title || 'B').charAt(0).toUpperCase())
       </div>
     </div>
 
+    <MusicWidget />
+
     <div class="widget">
       <h3 class="widget-title">技术信息</h3>
       <div class="tech-list">

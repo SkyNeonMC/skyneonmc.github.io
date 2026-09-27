@@ -591,6 +591,21 @@ img {
   letter-spacing: 0.04em;
 }
 
+/* 音乐 widget */
+.music-widget .music-iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  margin-bottom: 0.6rem;
+}
+
+/* 深色模式适配：官方播放器只有白底，用反色滤镜翻转为深色，
+   hue-rotate(180deg) 抵消反色带来的色相偏移，保住专辑封面和红色主题色 */
+.theme-dark .music-widget .music-iframe {
+  filter: invert(0.92) hue-rotate(180deg);
+}
+
 .stat-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

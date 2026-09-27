@@ -36,6 +36,8 @@ export default defineNuxtConfig({
     imageStorage: 'Local',
     softwareLicense: 'MIT',
     articleLicense: 'CC BY-NC-SA 4.0',
+    // 网易云音乐歌单 ID（歌单页面地址里的数字），替换成自己的歌单即可
+    neteasePlaylist: '12401396502',
   },
   nitro: {
     prerender: {
